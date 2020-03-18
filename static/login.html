@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Login</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js" async />
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/bluebird/3.5.0/bluebird.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fetch/2.0.3/fetch.js"></script>
+  <script src="https://browser.sentry-cdn.com/5.10.2/bundle.min.js"
+    integrity="sha384-ssBfXiBvlVC7bdA/VX03S88B5MwXQWdnpJRbUYFPgswlOBwETwTp6F3SMUNpo9M9" crossorigin="anonymous">
+    </script>
+  <script>
+    Sentry.init({ dsn: 'https://ddd3467b3bb04f15ae4b6e369ba02d94@sentry.io/1818158' });
+    var onSubmit = function (event) {
+      if (event.preventDefault) {
+        event.preventDefault()
+      } else {
+        event.returnValue = false
+      }
+      var username = document.getElementById('username').value;
+      var password = document.getElementById('password').value;
+      fetch(window.location.origin + '/auth', {
+        method: 'POST',
+        body: JSON.stringify({ username: username, password: password }),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }).then(function (response) {
+        if (response.status === 200) {
+          window.location.href = window.location.origin;
+        } else {
+          alert('Invalid username or password');
+        }
+      })
+    };
+  </script>
+</head>
+
+<body>
+  <div class="container-fluid">
+    <form class="form" onsubmit="onSubmit(event)" method="POST" style="max-width: 350px; margin: 0 auto;">
+      <label for="username">Username: </label><input class="form-control" id="username" name="username" autofocus
+        required />
+      <label for="password">Password: </label><input class="form-control" id="password" name="password" type="password"
+        required />
+      <br />
+      <input class="form-control btn btn-lg btn-primary" type="submit" value="LOGIN" style="height: 45px" />
+    </form>
+  </div>
+
+</body>
+
+</html>

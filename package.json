@@ -1,0 +1,13 @@
+{
+  "name": "express-protect-router",
+  "version": "1.0.1",
+  "description": "protect express api",
+  "main": "index.js",
+  "author": "dvm4078",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cookie-parser": "^1.4.5",
+    "jsonwebtoken": "^8.5.1"
+  }
+}
