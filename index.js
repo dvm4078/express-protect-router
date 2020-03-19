@@ -13,6 +13,7 @@ class Protect {
     this.redirectTo = configs.redirectTo || '/';
     this.htmlPath = configs.htmlPath || 'static/login.html';
     this.protectPath = configs.protectPath || '/auth';
+    this.productionDomain = configs.productionDomain;
   }
 
   init = (server) => {
@@ -39,7 +40,7 @@ class Protect {
   }
 
   requireAuth = (req, res, next) => {
-    if (this.isProtec) {
+    if ((this.productionDomain && this.productionDomain === req.headers.host) || this.isProtec) {
       const token = req.cookies['X_ACCESS_TOKEN'];
       jwt.verify(token, this.secret, async (err, decoded) => {
         if (decoded && decoded.username === this.username && decoded.password === this.password && decoded.iss === this.iss) {
@@ -53,7 +54,7 @@ class Protect {
   }
 
   requireUnAuth = (req, res, next) => {
-    if (this.isProtec) {
+    if ((this.productionDomain && this.productionDomain === req.headers.host) || this.isProtec) {
       const token = req.cookies['X_ACCESS_TOKEN'];
       jwt.verify(token, this.secret, async (err, decoded) => {
         if (decoded && decoded.username === this.username && decoded.password === this.password && decoded.iss === this.iss) {
