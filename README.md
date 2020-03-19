@@ -61,3 +61,4 @@ export default app;
 | `redirectTo`|  | '/' | The router will redirect after authentication |
 | `htmlPath` |  |  'static/login.html' | Path of the html file rather than the authentication form |
 | `protectPath` | | '/auth' | The router sends up the credentials|
+| `productionDomain` | |  | If specified and a value equal to req.headers.host will enable protection|
