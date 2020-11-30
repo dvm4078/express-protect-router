@@ -1,6 +1,6 @@
 {
   "name": "express-protect-router",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "protect express api",
   "main": "index.js",
   "author": "dvm4078",
